@@ -5,6 +5,8 @@ const users = require('./routes/user');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
 var jwt = require('jsonwebtoken');
+var swaggerUI = require('swagger-ui-express');
+var swaggerDoc = require('./app/swagger.json'); //app\
 const app = express();
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
 // connection to mongodb
@@ -16,9 +18,14 @@ res.json({"tutorial" : "Build REST API with node.js"});
 });
 // public route
 app.use('/user', users);
-
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc));
 // private route
 app.use('/test', validateUser, movies);
+
+app.use(function (req, res, next) {
+  res.header("Content-Type",'application/json');
+  next();
+});
 app.get('/favicon.ico', function(req, res) {
     res.sendStatus(204);
 });

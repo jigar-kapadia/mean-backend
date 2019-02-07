@@ -47,12 +47,14 @@ module.exports = {
 //     },
 
    create: function(req, res, next) {
+      //console.log(req.locals);
       testModel.create({ name: req.body.name, number: req.body.number }, function (err, result) {
          if (err) 
           next(err);
          else
-          res.json({status: "success", message: "Movie added successfully!!!", data: null});
+          res.json({status: "success", message: "test added successfully!!!", data: null});
          
        });
-    },
+   //res.json({status: "success", message: "test added successfully!!!", data: null});   
+     },
    }
