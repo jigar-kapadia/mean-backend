@@ -183,7 +183,62 @@
             "application/json"
           ]
         }
-      }
+      },
+      "countries" :{
+        "get" :{
+          "tags":[
+            "Countries"
+          ],
+          "summary" : "Get all Countries",
+          "responses" :{
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/definitions/Tests"
+              }
+            }
+          }
+        }
+      },
+      "states" :{
+       "get" :{
+         "tags":[
+           "States"
+         ],
+         "summary" : "Get all States",
+         "responses" :{
+           "200": {
+             "description": "OK"
+           }
+         }
+       }
+     },
+     "states/{countryid}" :{
+      "parameters": [
+       {
+         "name": "countryid",
+         "in": "path",
+         "required": true,
+         "description": "ID of user that we want to find",
+         "type": "string"
+       }
+     ],
+     "get": {
+       "tags": [
+         "State"
+       ],
+       "summary": "Get user with given Country ID",
+       "responses": {
+         "200": {
+           "description": "User is found",
+           "schema": {
+             "$ref": "#/definitions/States"
+           }
+         }
+       }
+       
+     }
+     }
     },
     "definitions": {
       "User": {
@@ -232,6 +287,58 @@
       "Tests" :{
         "type": "array",
         "$ref": "#/definitions/Test"
+      },
+      "Country" : {
+       "properties": {
+        "id": {
+          "type": "Number",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "iso3": {
+          "type": "string"
+        },
+        "iso2": {
+          "type": "string"
+        },
+        "phone_code" : {
+         "type": "string"
+        },
+        "capital" : {
+         "type": "string"
+        },
+        "currency" :
+        {
+         "type": "string"
+        }
       }
+      },
+      "Countries" : {
+       "type": "array",
+       "$ref": "#/definitions/Country"
+      },
+      "State" : {
+       "properties" : {
+         "id": {
+          "type": "Number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "country_id" : {
+         "type": "string"
+        }
+       }
+      }    ,
+      "States" : {
+       "type": "array",
+       "$ref": "#/definitions/States"
+      }  
+
+       
+      
     }
   }
