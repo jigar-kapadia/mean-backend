@@ -4,6 +4,7 @@ const movies = require('./routes/test') ;
 const users = require('./routes/user');
 const countries = require('./routes/country');
 const states = require('./routes/state');
+const cities = require('./routes/city');
 const bodyParser = require('body-parser');
 const mongoose = require('./config/database'); //database configuration
 var jwt = require('jsonwebtoken');
@@ -25,6 +26,7 @@ app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc));
 app.use('/test', validateUser, movies);
 app.use('/countries', countries);
 app.use('/states', states);
+app.use('/cities',cities);
 
 app.use(function (req, res, next) {
   res.header("Content-Type",'application/json');

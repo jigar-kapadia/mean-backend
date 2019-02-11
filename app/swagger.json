@@ -238,7 +238,46 @@
        }
        
      }
-     }
+     },
+     "cities" :{
+      "get" :{
+        "tags":[
+          "Cities"
+        ],
+        "summary" : "Get all Cities",
+        "responses" :{
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "cities/{stateid}" :{
+     "parameters": [
+      {
+        "name": "stateid",
+        "in": "path",
+        "required": true,
+        "description": "ID of state of which we want to find cities",
+        "type": "string"
+      }
+    ],
+    "get": {
+      "tags": [
+        "Cities"
+      ],
+      "summary": "Get Cities with given State ID",
+      "responses": {
+        "200": {
+          "description": "User is found",
+          "schema": {
+            "$ref": "#/definitions/Cities"
+          }
+        }
+      }
+      
+    }
+    }
     },
     "definitions": {
       "User": {
@@ -335,9 +374,30 @@
       }    ,
       "States" : {
        "type": "array",
-       "$ref": "#/definitions/States"
-      }  
-
+       "$ref": "#/definitions/State"
+      },
+      "City" : {
+        "properties" : {
+          "id": {
+           "type": "Number"
+         },
+         "name": {
+           "type": "string"
+         },
+         
+         "state_id" : {
+          "type": "string"
+         },
+         "country_id" : {
+          "type": "string"
+         }
+        }
+       },
+       "Cities" :
+       {
+        "type": "array",
+        "$ref": "#/definitions/City"
+       }
        
       
     }
