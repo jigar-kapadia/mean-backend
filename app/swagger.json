@@ -277,6 +277,120 @@
       }
       
     }
+    },
+    "employee" : {
+      "get" :{
+        "tags":[
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "description": "Json Web Token",              
+            "type" : "string",
+            "required" : "true"
+          }
+        ],
+        "summary" : "Get all Employees",
+        "responses" :{
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Employees"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Employee"
+        ],
+        "summary" : "Create New Employee",
+        "description": "Create New Employee",
+        "parameters": [
+            {
+              "name": "x-access-token",
+              "in": "header",
+              "type" : "string",
+              "required" : "true"
+            },
+          {
+            "name": "employee",
+            "in": "body",
+            "description": "Employee that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ]
+      }
+    },
+    "employee/{id}" :{
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of employee that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Employee"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "Employee is found",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Employee with given ID",
+        "tags": [
+          "Employee"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee is deleted",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Employee with give ID",
+        "tags": [
+          "Employee"
+        ],
+        "parameters": [
+          {
+            "name": "employee",
+            "in": "body",
+            "description": "Employee with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee is updated",
+            "schema": {
+              "$ref": "#/definitions/Employee"
+            }
+          }
+        }
+      }
     }
     },
     "definitions": {
@@ -397,6 +511,40 @@
        {
         "type": "array",
         "$ref": "#/definitions/City"
+       },
+       "Employee" : {
+        "properties" : {
+          "id": {
+           "type": "number"
+         },
+         "firstname": {
+           "type": "string"
+         },
+         
+         "lastname" : {
+          "type": "string"
+         },
+         "email" : {
+          "type": "string"
+         },
+         "contact" : { "type" : "number"},
+         "city_id" : {"type" : "number"},
+         "state_id" : {"type" : "number"},
+         "country_id" : {"type" : "number"},
+         "dateofbirth" : {"type" : "string"},
+         "dateofjoining" : {"type" : "string"},
+         "salary" : {"type" : "number"},
+         "gender" : { "type": "string" },
+         "depertment_id" : {"type" : "number"},
+         "isactive" : {"type" : "boolean"},
+          "skills" : {"type" : "string"},
+          "summary" : {"type" : "string"},
+          "experience" : {"type" :"number"}
+        }
+       },
+       "Employees" : {
+        "type": "array",
+        "$ref": "#/definitions/Employee"
        }
        
       
