@@ -14,8 +14,10 @@ const mongoose = require('./config/database'); //database configuration
 //JWT 
 var jwt = require('jsonwebtoken');
 
+//Swagger
 var swaggerUI = require('swagger-ui-express');
 var swaggerDoc = require('./app/swagger.json'); 
+
 const app = express(); //app
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
 
@@ -32,18 +34,18 @@ app.use(bodyParser.json())
 //CORS
 app.use(cors());
 
-// public route
+// public routes
 app.use('/user', users);
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc));
 
-// private route
+// private routes
 app.use('/test', validateUser, movies);
 app.use('/countries', countries);
 app.use('/states', states);
 app.use('/cities',cities);
 app.use('/employee',emplyees);
 
-//for parsing all request ot application/json
+//for parsing all request to application/json
 app.use(function (req, res, next) {
   res.header("Content-Type",'application/json');
   next();
