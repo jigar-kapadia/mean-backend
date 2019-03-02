@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     create: function(req, res, next) {
      
-     userModel.create({ name: req.body.name, email: req.body.email, password: req.body.password,role : req.body.role }, function (err, result) {
+     userModel.create({ firstname: req.body.firstName, lastname : req.body.lastName, email: req.body.email, password: req.body.password,role : req.body.role,accesstype : req.body.accesstype }, function (err, result) {
          if (err) 
           next(err);
          else
@@ -28,4 +28,31 @@ module.exports = {
         }
        });
     },
+    getallusers : function(req,res,next){
+       userModel.find({},function(err,users){
+          if(err)
+            next(err);
+            else{
+               res.json({status:"success", message: "users found!!!", data:{user: users}})
+            }
+       })
+    },
+    getuserbyemail : function(req,res,next){
+       console.log(req.params.email);
+       userModel.findOne({email : req.params.email},function(err,users){
+          if(err)
+            next(err)
+         else
+            res.json({status : "success", message : "", data : {user : users}})
+       })
+    },
+    getuserbyid : function(req,res,next){
+      console.log(req.params.id);
+      userModel.findById(req.params.id ,function(err,users){
+         if(err)
+           next(err)
+        else
+           res.json({status : "success", message : "", data : {user : users}})
+      })
+   }
    }

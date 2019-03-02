@@ -6,7 +6,12 @@ const roundSalt = 10;
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    name: {
+    firstname: {
+        type: String,
+        trim: true,  
+        required: true,
+       },
+       lastname: {
         type: String,
         trim: true,  
         required: true,
@@ -25,7 +30,11 @@ const UserSchema = new Schema({
            type : String,
            trim : true,
            required : true
-       }
+       },accesstype : {
+        type : String,
+        trim : true,
+        required : true
+    }
 });
 
 // hash user password before saving into database

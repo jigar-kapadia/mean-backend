@@ -35,7 +35,7 @@ app.use(bodyParser.json())
 app.use(cors());
 
 // public routes
-app.use('/user', users);
+app.use('/users', users);
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDoc));
 
 // private routes
