@@ -7,7 +7,7 @@ const assert = require('assert');
 const app = express();
 const mongoClient = require('mongodb').MongoClient;
 
-mongoClient.connect("mongodb://jk:jk12345@ds117535.mlab.com:17535",function(err,client){
+mongoClient.connect("mongodb://jk:jk1a2345@ds11a7535.mlab.com:17535",function(err,client){
 assert.equal(null,client);
 console.log('Connected');
 //client.close();
